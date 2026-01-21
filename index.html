@@ -13,100 +13,140 @@
       color: #e5e7eb;
       line-height: 1.6;
     }
-
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .container {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 64px 24px;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-    }
-
+    h1 { font-size: 2.2rem; margin: 0 0 8px; }
     h2 {
-      margin-top: 48px;
-      font-size: 1.4rem;
+      margin-top: 44px;
+      font-size: 1.3rem;
       border-bottom: 1px solid #334155;
-      padding-bottom: 6px;
+      padding-bottom: 8px;
     }
 
-    .subtitle {
+    .subtitle { color: #94a3b8; margin-bottom: 18px; }
+    .section { margin-top: 18px; }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
       color: #94a3b8;
-      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .pill {
+      border: 1px solid #334155;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
     }
 
-    .section {
-      margin-top: 24px;
+    .projects { margin-top: 18px; display: grid; gap: 14px; }
+    .card {
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 16px 16px 14px;
+      background: rgba(2, 6, 23, 0.35);
     }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .card p { margin: 0 0 10px; color: #cbd5e1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+    .tag {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .links { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    .project {
-      margin-bottom: 16px;
-    }
-
-    .project-title {
-      font-weight: 600;
-    }
-
-    footer {
-      margin-top: 80px;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
+    footer { margin-top: 72px; font-size: 0.9rem; color: #64748b; }
+    .muted { color: #94a3b8; }
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Lesring</h1>
-    <div class="subtitle">
-      网络安全 / Web3 / 技术探索者
-    </div>
+    <div class="subtitle">网络安全 · 工具开发 · Web 应用</div>
 
     <div class="section">
       <p>
-        我关注网络安全、区块链与系统底层技术，喜欢从原理和攻击视角理解系统。
-        这里是我的个人作品集，用于记录和展示我做过的一些项目与技术实践。
+        我关注安全与系统工具，偏好把“能用起来”的小工具做扎实：可复现、可配置、可维护。
+        这里整理我近期的一些项目与实践。
       </p>
+
+      <div class="meta">
+        <span class="pill">Windows / Linux</span>
+        <span class="pill">Web</span>
+        <span class="pill">Tooling</span>
+      </div>
     </div>
 
     <h2>Projects</h2>
-    <div class="section">
-      <div class="project">
-        <div class="project-title">Project Name 1</div>
-        <div>
-          简要描述你做了什么。
-          <a href="https://github.com/yourname/project1" target="_blank">
-            GitHub →
-          </a>
+    <div class="projects">
+
+      <div class="card">
+        <h3>ChatCipher</h3>
+        <p>
+          基于 AutoHotkey v2 的聊天加密/解密小工具：对选中文本一键加密/解密（XOR 异或 + 十六进制输出），支持多编码与“Auto 解密”自动尝试。
+        </p>
+        <div class="tags">
+          <span class="tag">AutoHotkey v2</span>
+          <span class="tag">XOR</span>
+          <span class="tag">UTF-8 / UTF-16LE / GBK</span>
+          <span class="tag">Windows</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Lesring/ChatCipher" target="_blank" rel="noreferrer">GitHub →</a>
         </div>
       </div>
 
-      <div class="project">
-        <div class="project-title">Project Name 2</div>
-        <div>
-          简要描述项目亮点或技术点。
-          <a href="https://github.com/yourname/project2" target="_blank">
-            GitHub →
-          </a>
+      <div class="card">
+        <h3>CloudPalette</h3>
+        <p>
+          在线配色工具集合（StarryPoints）中的 CloudPalette 模块：包含探索模式与专业模式，支持多风格配色生成、编辑、历史记录与导出（CSS/JSON/TXT），可纯静态运行。
+        </p>
+        <div class="tags">
+          <span class="tag">HTML / CSS / JS</span>
+          <span class="tag">配色生成</span>
+          <span class="tag">导出 CSS/JSON</span>
+          <span class="tag">可选 Express 托管</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Lesring/CloudPalette" target="_blank" rel="noreferrer">GitHub →</a>
         </div>
       </div>
+
+      <div class="card">
+        <h3>My Life Goals</h3>
+        <p>
+          极简“人生目标”清单：标签体系、排序/筛选、轻量就地编辑；支持上传自定义壁纸，并将数据持久化到浏览器本地（localStorage）。
+        </p>
+        <div class="tags">
+          <span class="tag">Vue 3</span>
+          <span class="tag">Vite</span>
+          <span class="tag">localStorage</span>
+          <span class="tag">原生 CSS</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Lesring/---My-Life-Goals" target="_blank" rel="noreferrer">GitHub →</a>
+        </div>
+      </div>
+
     </div>
 
     <h2>Skills</h2>
     <div class="section">
-      <p>
-        网络安全｜基础渗透｜Solidity｜智能合约审计｜Linux｜Git
+      <p class="muted">
+        工具开发（Windows 自动化）｜前端基础（Vue / Vite / 原生 JS）｜工程化（Git / npm）｜安全基础（自用工具与流程化实践）
       </p>
     </div>
 
@@ -114,17 +154,13 @@
     <div class="section">
       <p>
         GitHub:
-        <a href="https://github.com/Lesring" target="_blank">
-          https://github.com/Lesring
-        </a>
+        <a href="https://github.com/Lesring" target="_blank" rel="noreferrer">github.com/Lesring</a>
         <br />
-        Email: your_email@example.com
+        Email: <span class="muted">your_email@example.com</span>
       </p>
     </div>
 
-    <footer>
-      © 2026 Lesring
-    </footer>
+    <footer>© 2026 Lesring</footer>
   </div>
 </body>
 </html>
