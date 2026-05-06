@@ -3,122 +3,450 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lesring | Portfolio</title>
+  <title>Lesring | Developer & Creator</title>
   <style>
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --border: #d4d4d4;
+      --border-strong: #0a0a0a;
+      --text: #0a0a0a;
+      --body: #262626;
+      --muted: #737373;
+      --dim: #a3a3a3;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Helvetica, Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      line-height: 1.6;
+        Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: #38bdf8; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(10, 10, 10, 0.28);
+    }
+    a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    html[lang="zh-CN"] .locale-en { display: none !important; }
+    html[lang="en"] .locale-zh { display: none !important; }
 
     .container {
-      max-width: 920px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 64px 24px;
+      padding: 56px 28px 88px;
     }
 
-    h1 { font-size: 2.2rem; margin: 0 0 8px; }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+      max-width: 520px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 16px;
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      background: var(--border-strong);
+      color: #fff;
+      text-decoration: none;
+      text-underline-offset: 0;
+      cursor: pointer;
+      transition: opacity 0.12s ease, background 0.12s ease;
+    }
+    .cta:hover {
+      opacity: 0.92;
+      text-decoration: none;
+    }
+    .cta.cta--ghost {
+      background: var(--surface);
+      color: var(--text);
+    }
+    .cta.cta--ghost:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    a.cta:not([href]) {
+      cursor: default;
+      opacity: 0.85;
+    }
+
+    .about-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 20px 0 8px;
+    }
+    .about-label:first-of-type { margin-top: 4px; }
+
+    .footer-cta {
+      margin: 0 0 12px;
+      color: var(--body);
+      font-size: 0.94rem;
+      max-width: 560px;
+    }
+    .footer-cta a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(10, 10, 10, 0.28);
+      cursor: default;
+    }
+    .footer-cta a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .lang-toggle button {
+      font: inherit;
+      font-size: 0.82rem;
+      padding: 7px 13px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+    .lang-toggle button:hover {
+      color: var(--text);
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .lang-toggle button + button {
+      border-left: 1px solid var(--border-strong);
+    }
+    .lang-toggle button[aria-pressed="true"] {
+      background: var(--border-strong);
+      color: #fff;
+    }
+
     h2 {
-      margin-top: 44px;
-      font-size: 1.3rem;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 8px;
+      margin: 40px 0 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 10px;
     }
 
-    .subtitle { color: #94a3b8; margin-bottom: 18px; }
-    .section { margin-top: 18px; }
+    .section { margin-top: 16px; }
+    .section > p { margin: 0 0 12px; color: var(--body); }
 
     .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       margin-top: 10px;
-      color: #94a3b8;
-      font-size: 0.95rem;
     }
     .pill {
-      border: 1px solid #334155;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 0;
+      background: transparent;
+      font-size: 0.8rem;
+      color: var(--body);
     }
 
-    .projects { margin-top: 18px; display: grid; gap: 14px; }
+    .cv-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-row:last-child { border-bottom: none; }
+    .cv-dates {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .cv-body h3 {
+      margin: 0 0 4px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cv-body .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    ul.honors {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--body);
+    }
+    ul.honors li { margin: 8px 0; }
+    ul.honors li .note {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .projects {
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+    }
     .card {
-      border: 1px solid #334155;
-      border-radius: 14px;
-      padding: 16px 16px 14px;
-      background: rgba(2, 6, 23, 0.35);
+      border: none;
+      border-radius: 0;
+      padding: 18px 0;
+      background: transparent;
+      border-bottom: 1px solid var(--border);
     }
-    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
-    .card p { margin: 0 0 10px; color: #cbd5e1; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+    .card:last-child {
+      border-bottom: none;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 600; color: var(--text); }
+    .card p { margin: 0 0 10px; color: var(--body); font-size: 0.94rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 12px 0 10px; }
     .tag {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      border: 1px solid #334155;
-      padding: 3px 8px;
-      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.95rem; }
 
-    footer { margin-top: 72px; font-size: 0.9rem; color: #64748b; }
-    .muted { color: #94a3b8; }
+    .muted { color: var(--muted); }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--dim);
+      letter-spacing: 0.02em;
+    }
+    footer .copyright {
+      margin: 16px 0 0;
+    }
+
+    @media (max-width: 560px) {
+      .cv-row { grid-template-columns: 1fr; }
+      .cv-dates { margin-bottom: -4px; }
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Lesring</h1>
-    <div class="subtitle">网络安全 · 工具开发 · Web 应用</div>
+    <header class="topbar">
+      <div>
+        <h1>Hi, I’m Lesring – Developer &amp; Creator</h1>
+        <p class="tagline">
+          <span class="locale-zh">探索个人项目、工具和实验性作品</span>
+          <span class="locale-en">Exploring personal projects, tools, and experimental work</span>
+        </p>
+        <div class="hero-ctas">
+          <a class="cta" href="#projects">
+            <span class="locale-zh">查看我的项目</span>
+            <span class="locale-en">View my projects</span>
+          </a>
+          <a class="cta cta--ghost">
+            <span class="locale-zh">访问我的专业 Web3 账号</span>
+            <span class="locale-en">Visit my professional Web3 profile</span>
+          </a>
+        </div>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" id="btn-zh" aria-pressed="true">中文</button>
+        <button type="button" id="btn-en" aria-pressed="false">EN</button>
+      </div>
+    </header>
 
+    <h2>
+      <span class="locale-zh">关于我</span>
+      <span class="locale-en">About</span>
+    </h2>
     <div class="section">
       <p>
-        我关注安全与系统工具，偏好把“能用起来”的小工具做扎实：可复现、可配置、可维护。
-        这里整理我近期的一些项目与实践。
+        <span class="locale-zh">
+          我是一个热衷于技术与创新的开发者，喜欢通过小工具和实验项目探索前端、桌面应用、自动化脚本以及日常开发问题的解决方案。
+        </span>
+        <span class="locale-en">
+          I’m a developer who loves technology and innovation. I explore frontends, desktop apps,
+          automation scripts, and everyday dev problems through small tools and experimental projects.
+        </span>
       </p>
-
+      <p>
+        <span class="locale-zh">
+          这个页面展示了我个人的练习、实验项目以及创意工具，记录了学习过程和成长轨迹。
+        </span>
+        <span class="locale-en">
+          This page collects my practice work, experiments, and creative tools—and traces how I learn
+          and grow.
+        </span>
+      </p>
+      <p class="about-label locale-zh">技能方向</p>
+      <p class="about-label locale-en">Focus</p>
       <div class="meta">
-        <span class="pill">Windows / Linux</span>
-        <span class="pill">Web</span>
-        <span class="pill">Tooling</span>
+        <span class="pill">Python</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">Vue</span>
+        <span class="pill">Electron</span>
+        <span class="pill">AutoHotkey</span>
+        <span class="pill locale-zh">前端设计</span>
+        <span class="pill locale-en">Frontend design</span>
+      </div>
+      <p class="about-label locale-zh">兴趣领域</p>
+      <p class="about-label locale-en">Interests</p>
+      <div class="meta">
+        <span class="pill locale-zh">桌面工具</span>
+        <span class="pill locale-en">Desktop tools</span>
+        <span class="pill locale-zh">图像处理</span>
+        <span class="pill locale-en">Image processing</span>
+        <span class="pill locale-zh">生活自动化</span>
+        <span class="pill locale-en">Life automation</span>
+        <span class="pill locale-zh">配色与 UI 工具</span>
+        <span class="pill locale-en">Color &amp; UI tooling</span>
       </div>
     </div>
 
-    <h2>Projects</h2>
+    <h2>
+      <span class="locale-zh">教育经历</span>
+      <span class="locale-en">Education</span>
+    </h2>
+    <div class="section">
+      <div class="cv-row">
+        <div class="cv-dates">2024 — 2028</div>
+        <div class="cv-body">
+          <h3>
+            <span class="locale-zh">武汉大学</span>
+            <span class="locale-en">Wuhan University</span>
+          </h3>
+          <p class="sub">
+            <span class="locale-zh">网络空间安全 · 本科在读</span>
+            <span class="locale-en">Undergraduate student majoring in Cyberspace Security</span>
+   
+        </div>
+      </div>
+    </div>
+
+    <h2 id="projects">
+      <span class="locale-zh">项目</span>
+      <span class="locale-en">Projects</span>
+    </h2>
     <div class="projects">
 
       <div class="card">
-        <h3>ChatCipher</h3>
+        <h3>WeiboAcquisition</h3>
         <p>
-          基于 AutoHotkey v2 的聊天加密/解密小工具：对选中文本一键加密/解密（XOR 异或 + 十六进制输出），支持多编码与“Auto 解密”自动尝试。
+          <span class="locale-zh">面向个人内容归档的数据抓取项目，支持微博信息批量采集、结构化保存与后续本地分析。</span>
+          <span class="locale-en">A personal data acquisition project for Weibo content archiving, enabling batch collection, structured storage, and downstream local analysis.</span>
         </p>
         <div class="tags">
-          <span class="tag">AutoHotkey v2</span>
-          <span class="tag">XOR</span>
-          <span class="tag">UTF-8 / UTF-16LE / GBK</span>
-          <span class="tag">Windows</span>
+          <span class="tag">Python</span>
+          <span class="tag locale-zh">Web 抓取</span>
+          <span class="tag locale-en">Web Scraping</span>
+        
         </div>
         <div class="links">
-          <a href="https://github.com/Lesring/ChatCipher" target="_blank" rel="noreferrer">GitHub →</a>
+          <a href="https://github.com/Lesring/WeiboAcquisition" target="_blank" rel="noreferrer">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>ImageCompress</h3>
+        <p>
+          <span class="locale-zh">桌面端图像压缩工具，支持目标体积与比例压缩、批处理任务与快捷键操作，提升素材处理效率。</span>
+          <span class="locale-en">Desktop image compression tool supporting target-size/ratio strategies, batch tasks, and hotkey-driven operation for faster media workflows.</span>
+        </p>
+        <div class="tags">
+          <span class="tag">Electron</span>
+          <span class="tag">Desktop App</span>
+
+         
+          <span class="tag locale-zh">图像优化</span>
+          <span class="tag locale-en">Image Optimization</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Lesring/ImageCompress" target="_blank" rel="noreferrer">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>ImageConversion</h3>
+        <p>
+          <span class="locale-zh">面向批量场景的图像格式转换工具，覆盖常见输入输出格式，适用于资源预处理与交付标准化。</span>
+          <span class="locale-en">A Node.js-based batch format conversion utility for image pipelines, designed for asset preprocessing and delivery standardization.</span>
+        </p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+         
+          <span class="tag locale-zh">格式转换</span>
+          <span class="tag locale-en">Format Conversion</span>
+          <span class="tag locale-zh">批处理</span>
+          <span class="tag locale-en">Batch Processing</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/Lesring/ImageConversion" target="_blank" rel="noreferrer">GitHub →</a>
         </div>
       </div>
 
       <div class="card">
         <h3>CloudPalette</h3>
         <p>
-          在线配色工具集合（StarryPoints）中的 CloudPalette 模块：包含探索模式与专业模式，支持多风格配色生成、编辑、历史记录与导出（CSS/JSON/TXT），可纯静态运行。
+          <span class="locale-zh">在线配色生成与管理工具，提供多模式配色探索、编辑与导出能力，便于设计与前端协同落地。</span>
+          <span class="locale-en">A web palette generation and management tool with multi-mode color exploration, editing, and export for design-development collaboration.</span>
         </p>
         <div class="tags">
-          <span class="tag">HTML / CSS / JS</span>
-          <span class="tag">配色生成</span>
-          <span class="tag">导出 CSS/JSON</span>
-          <span class="tag">可选 Express 托管</span>
+          <span class="tag">Web App</span>
+          <span class="tag locale-zh">配色系统</span>
+          <span class="tag locale-en">Color System</span>
         </div>
         <div class="links">
           <a href="https://github.com/Lesring/CloudPalette" target="_blank" rel="noreferrer">GitHub →</a>
@@ -126,41 +454,82 @@
       </div>
 
       <div class="card">
-        <h3>My Life Goals</h3>
+        <h3>ChatCipher</h3>
         <p>
-          极简“人生目标”清单：标签体系、排序/筛选、轻量就地编辑；支持上传自定义壁纸，并将数据持久化到浏览器本地（localStorage）。
+          <span class="locale-zh">面向聊天文本场景的轻量加密工具，提供 XOR 加密与多编码处理能力，兼顾易用性与隐私保护。</span>
+          <span class="locale-en">A lightweight utility for chat-text protection with XOR encryption and multi-encoding support, balancing usability and privacy needs.</span>
         </p>
         <div class="tags">
-          <span class="tag">Vue 3</span>
-          <span class="tag">Vite</span>
-          <span class="tag">localStorage</span>
-          <span class="tag">原生 CSS</span>
+          <span class="tag">AutoHotkey</span>
+          <span class="tag locale-zh">文本加密</span>
+          <span class="tag locale-en">Text Encryption</span>
+          <span class="tag locale-zh">编码处理</span>
+          <span class="tag locale-en">Encoding Support</span>
+          
         </div>
         <div class="links">
-          <a href="https://github.com/Lesring/---My-Life-Goals" target="_blank" rel="noreferrer">GitHub →</a>
+          <a href="https://github.com/Lesring/ChatCipher" target="_blank" rel="noreferrer">GitHub →</a>
         </div>
       </div>
 
     </div>
 
-    <h2>Skills</h2>
+    <h2>
+      <span class="locale-zh">联系方式</span>
+      <span class="locale-en">Contact</span>
+    </h2>
     <div class="section">
-      <p class="muted">
-        工具开发（Windows 自动化）｜前端基础（Vue / Vite / 原生 JS）｜工程化（Git / npm）｜安全基础（自用工具与流程化实践）
+      <p class="contact-line">
+        <span class="locale-zh">邮箱：</span>
+        <span class="locale-en">Email:</span>
+        <a href="mailto:dorian.yao@outlook.com">dorian.yao@outlook.com</a>
       </p>
-    </div>
-
-    <h2>Contact</h2>
-    <div class="section">
-      <p>
+      <p class="contact-line">
         GitHub:
         <a href="https://github.com/Lesring" target="_blank" rel="noreferrer">github.com/Lesring</a>
-        <br />
-        Email: <span class="muted">your_email@example.com</span>
       </p>
     </div>
 
-    <footer>© 2026 Lesring</footer>
+    <footer>
+      <p class="footer-cta">
+        <span class="locale-zh">
+          如果你对 Web3 或区块链项目感兴趣，可以访问我的专业账号：
+          <a>Dorian Yao</a>
+        </span>
+        <span class="locale-en">
+          If you’re interested in Web3 or blockchain work, visit my professional profile:
+          <a>Dorian Yao</a>
+        </span>
+      </p>
+      <p class="copyright">© 2026 Lesring</p>
+    </footer>
   </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var KEY = "lesring.cv.lang";
+
+      function setLang(lang) {
+        var zh = lang === "zh-CN";
+        root.lang = zh ? "zh-CN" : "en";
+        document.getElementById("btn-zh").setAttribute("aria-pressed", zh ? "true" : "false");
+        document.getElementById("btn-en").setAttribute("aria-pressed", zh ? "false" : "true");
+        document.title = zh ? "Lesring | 开发者与创作者" : "Lesring | Developer & Creator";
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+
+      var saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+      if (saved === "en" || saved === "zh-CN") setLang(saved);
+
+      document.getElementById("btn-zh").addEventListener("click", function () {
+        setLang("zh-CN");
+      });
+      document.getElementById("btn-en").addEventListener("click", function () {
+        setLang("en");
+      });
+    })();
+  </script>
 </body>
 </html>
